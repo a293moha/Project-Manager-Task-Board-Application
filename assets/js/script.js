@@ -7,17 +7,21 @@ function generateTaskId() {
     let id = nextId;
     nextId++;
     localStorage.setItem("nextId", JSON.stringify(nextId));
-    return taskList;
+    return id;
 }
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
-   
+   const card = document.createElement("div");
+   card.className = "taskCard";
+   card.id = `task${task.id}`;
 }
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-
+    $(function () {
+        $('#sortable').sortable();
+      });
 }
 
 // Todo: create a function to handle adding a new task
