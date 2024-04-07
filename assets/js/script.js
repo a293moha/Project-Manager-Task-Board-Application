@@ -15,18 +15,30 @@ function createTaskCard(task) {
    const card = document.createElement("div");
    card.className = "taskCard";
    card.id = `task${task.id}`;
+   card.draggable = true;
+   return card;
 }
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
     $(function () {
-        $('#sortable').sortable();
+        $('#draggable').draggable();
       });
 }
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event){
+    event.preventDefault();
+    const title = document.getElementById("task-title").value;
+    const description = document.getElementById("task-description").value;
+    const dueDate = dayjs(document.getElementById("task-due-date").value).format('YYYY-MM-DD');
+    
 
+    const taskId = generateTaskId();
+    const task = {id: taskId, title, description, dueDate};
+    taskList.push(task);
+    localStorage.setItem("task", JSON.stringify(taskList));
+    renderTaskList();
 }
 
 // Todo: create a function to handle deleting a task
