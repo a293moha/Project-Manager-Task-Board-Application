@@ -33,11 +33,16 @@ function handleAddTask(event){
     const description = $('#task-description').val().trim();
     const dueDate = dayjs($('task-due-date').val()).format(YYYY-MM-DD);
     
-    const taskId = generateTaskId();
-    const task = {id: taskId, title, description, dueDate};
-    taskList.push(task);
-    localStorage.setItem("task", JSON.stringify(taskList));
-    renderTaskList();
+    if(title && dueDate) {
+        const taskId = generateTaskId();
+        const task = {id: taskId, title, description, dueDate};
+        taskList.push(task);
+        localStorage.setItem("task", JSON.stringify(taskList));
+        renderTaskList();
+    } else {
+        alert("please fill in all of the required options.");
+    }
+    
 }
 
 // Todo: create a function to handle deleting a task
