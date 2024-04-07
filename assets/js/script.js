@@ -49,7 +49,18 @@ function handleDeleteTask(event){
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
-
+//use droppable from jquery
+$( function() {
+    $( "#draggable" ).draggable();
+    $( "#droppable" ).droppable({
+      drop: function( event, ui ) {
+        $( this )
+          .addClass( "ui-state-highlight" )
+          .find( "p" )
+            .html( "Dropped!" );
+      }
+    });
+  } );
 }
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
