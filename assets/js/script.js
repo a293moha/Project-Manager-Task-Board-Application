@@ -33,7 +33,6 @@ function handleAddTask(event){
     const description = document.getElementById("task-description").value;
     const dueDate = dayjs(document.getElementById("task-due-date").value).format('YYYY-MM-DD');
     
-
     const taskId = generateTaskId();
     const task = {id: taskId, title, description, dueDate};
     taskList.push(task);
@@ -43,7 +42,9 @@ function handleAddTask(event){
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
-
+    taskList = taskList.filter(task => task.id === id);
+    localStorage.setItem("taks", JSON.stringify(taskList));
+    renderTaskList;
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
