@@ -29,9 +29,9 @@ function renderTaskList() {
 // Todo: create a function to handle adding a new task
 function handleAddTask(event){
     event.preventDefault();
-    const title = document.getElementById("task-title").value;
-    const description = document.getElementById("task-description").value;
-    const dueDate = dayjs(document.getElementById("task-due-date").value).format('YYYY-MM-DD');
+    const title = $('#task-title').val().trim;
+    const description = $('#task-description').val().trim();
+    const dueDate = dayjs($('task-due-date').val()).format(YYYY-MM-DD);
     
     const taskId = generateTaskId();
     const task = {id: taskId, title, description, dueDate};
