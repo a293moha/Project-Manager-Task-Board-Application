@@ -1,6 +1,6 @@
 // Retrieve tasks and nextId from localStorage
-let taskList = JSON.parse(localStorage.getItem("tasks")); || [];
-let nextId = JSON.parse(localStorage.getItem("nextId")); || 1; 
+let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+let nextId = JSON.parse(localStorage.getItem("nextId")) || 1; 
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
@@ -16,15 +16,23 @@ function createTaskCard(task) {
    card.className = "taskCard";
    card.id = `task${task.id}`;
    card.draggable = true;
+   
+   $('#card').on('click', handleAddTask);
    return card;
 }
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-    $(function () {
-        $('#draggable').draggable();
-      });
+    let taskListContainer = document.getElementById('taskListContainer');
+    taskListContainer.innerHTML = '';
+    for (let task of taskList) {
+        // Create a new task card. still won't work!!!!
+    let card = createTaskCard(task);
+    taskListContainer.appendChild(card);
+    $(`#task${task.id}`).draggable();
+    }
 }
+
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event){
@@ -72,3 +80,5 @@ $( function() {
 $(document).ready(function () {
 
 });
+
+
